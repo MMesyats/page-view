@@ -26,7 +26,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
 
   const handleTouchEvents: () => VoidFunction = () => {
     let startY = 0
-    const handleTouchStart = ({ touches }: any) => {
+    const handleTouchStart = ({ touches, stopPropagation }: any) => {
       const { screenY, pageY } = touches[0]
       if (!changing) {
         startY = screenY
@@ -57,9 +57,9 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
         }, TRANSITION)
       }
     }
-    pageViewElement.current.addEventListener('touchstart', handleTouchStart, false)
-    pageViewElement.current.addEventListener('touchmove', handleTouch, false)
-    pageViewElement.current.addEventListener('touchend', handleTouchEnd, false)
+    pageViewElement.current.addEventListener('touchstart', handleTouchStart, { passive: true, capture: true })
+    pageViewElement.current.addEventListener('touchmove', handleTouch, { passive: true, capture: true })
+    pageViewElement.current.addEventListener('touchend', handleTouchEnd, { passive: true, capture: true })
     return () => {
       pageViewElement.current.removeEventListener('touchstart', handleTouchStart)
       pageViewElement.current.removeEventListener('touchmove', handleTouch)
@@ -71,7 +71,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     if (typeof window !== 'undefined') {
       handleResize()
       window.addEventListener('resize', handleResize)
-      window.addEventListener('mousewheel', handleScroll, { passive: true, capture: false })
+      window.addEventListener('mousewheel', handleScroll, { passive: true, capture: true })
     }
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
