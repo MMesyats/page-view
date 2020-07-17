@@ -1,9 +1,11 @@
 import React from 'react'
 import { IPage } from '../index';
 
-const Page:React.FC<IPage> = ({children}):JSX.Element => {
+const Page:React.FC<IPage> = ({children,className}):JSX.Element => {
     return (
-        <div style={{
+        <div
+        className={className}
+        style={{
             width:'inherit',
             height: 'inherit',
             overflow: 'hidden',

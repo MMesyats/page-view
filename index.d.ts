@@ -3,5 +3,6 @@ export interface IPageView {
     children: JSX.Element[]
 }
 export interface IPage {
+    className?: string
     children: JSX.Element[]
 }
