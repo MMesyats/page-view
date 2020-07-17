@@ -1,9 +1,9 @@
 export interface IPageView {
     propPage?: number
     changePropPage?: (arg0:number)=>void
-    children: React.FC<IPage>[]
+    children: React.ReactNode
 }
 export interface IPage {
     className?: string
-    children: JSX.Element[] | JSX.Element
+    children: React.ReactNode
 }
