@@ -31,35 +31,6 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
 
     }
 
-    const handleDrag = () => 
-    {
-        let startY =0;
-        pageViewElement.current.addEventListener('dragstart',({screenY}:any)=>{
-            startY = screenY
-            pageViewElement.current.style.transition=`none`;
-            return false;
-        },{passive:true})
-        pageViewElement.current.addEventListener('drag',({screenY}:any)=>{
-            if(height*currentPage+startY-screenY>0 && height*currentPage+startY-screenY<height*2)
-                pageViewElement.current.style.transform=`translateY(-${height*currentPage+startY-screenY}px)`;
-            return false;
-        },{passive:true});
-        pageViewElement.current.addEventListener('dragend',({screenY}:any)=>{
-            const delta = startY-screenY;
-            pageViewElement.current.style.transition=`ease-out transform ${TRANSITION}ms`;
-            if(!changing)
-            {
-                setChanging(true)
-                if(delta > 100 && currentPage <= 1) 
-                  changePage(currentPage+1)
-                else if(delta < -100 && currentPage > 0)
-                  changePage(currentPage-1)
-                setTimeout(()=>{setChanging(false)},TRANSITION)
-            }
-            return false;
-        },{passive:true})
-    }
-
     const handleTouchEvents:() => VoidFunction   = () => 
     {
         let startY =0;
@@ -81,7 +52,7 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
             if(!changing)
             {
                 setChanging(true)
-                if(delta > 40 && currentPage <= 1) 
+                if(delta > 40 && currentPage <= children.length - 2) 
                   changePage(currentPage+1)
                 else if(delta < -40 && currentPage > 0)
                   changePage(currentPage-1)
