@@ -28,8 +28,10 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     let startY = 0
     const handleTouchStart = ({ touches }: any) => {
       const { screenY, pageY } = touches[0]
-      if (!changing) startY = screenY
-      pageViewElement.current.style.transition = `none`
+      if (!changing) {
+        startY = screenY
+        pageViewElement.current.style.transition = `none`
+      }
     }
     const handleTouch = (e: any) => {
       const { screenY } = e.touches[0]
