@@ -57,9 +57,9 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
         }, TRANSITION)
       }
     }
-    pageViewElement.current.addEventListener('touchstart', handleTouchStart, { passive: true, capture: false })
-    pageViewElement.current.addEventListener('touchmove', handleTouch, { passive: true, capture: false })
-    pageViewElement.current.addEventListener('touchend', handleTouchEnd, { passive: true, capture: false })
+    pageViewElement.current.addEventListener('touchstart', handleTouchStart, false)
+    pageViewElement.current.addEventListener('touchmove', handleTouch, false)
+    pageViewElement.current.addEventListener('touchend', handleTouchEnd, false)
     return () => {
       pageViewElement.current.removeEventListener('touchstart', handleTouchStart)
       pageViewElement.current.removeEventListener('touchmove', handleTouch)
