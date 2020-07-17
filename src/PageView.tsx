@@ -6,7 +6,7 @@ const TRANSITION = 600;
 const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
     const pageViewElement = useRef<any>();
     const [currentPage,setCurrentPage] = useState<number>(0);
-    const [height, setHeight] = useState<number>(window.innerHeight);
+    const [height, setHeight] = useState<number>();
     const [changing, setChanging] = useState<boolean>(false);
 
     const changePage:(page:number)=>void = (page) => 
@@ -28,7 +28,6 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
     }
     const handleResize = () => {
         setHeight(window.innerHeight);
-
     }
 
     const handleTouchEvents:() => VoidFunction   = () => 
@@ -78,7 +77,10 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
   
     useEffect(() => {
         if(typeof window!=='undefined')
+        {
+            handleResize()
             window.addEventListener('resize',handleResize)
+        }
         pageViewElement.current.addEventListener('wheel',handleScroll,{passive:true})
         const cleanupTouchEvents = handleTouchEvents()
         return () => {
