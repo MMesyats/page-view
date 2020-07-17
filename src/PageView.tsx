@@ -98,8 +98,8 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
         width: '100%',
         height: `${height}px`,
         maxHeight: '100%',
-        position: 'relative',
-        overflow: 'hidden',
+        position: 'absolute',
+        overflow: 'visible',
         transform: `translateY(-${height * currentPage}px)`,
         transition: `ease-out transform ${TRANSITION}ms`
       }}
