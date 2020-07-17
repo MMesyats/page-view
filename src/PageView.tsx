@@ -79,7 +79,6 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
         window.addEventListener('resize',handleResize)
         pageViewElement.current.addEventListener('wheel',handleScroll,{passive:true})
         const cleanupTouchEvents = handleTouchEvents()
-        handleDrag()
         return () => {
             window.removeEventListener('resize',handleResize);
             pageViewElement.current.removeEventListener('wheel',handleScroll)
