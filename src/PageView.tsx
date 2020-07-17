@@ -43,7 +43,7 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
         {
                 const {screenY} = touches[0];
                 const movementDifference =  height*currentPage+startY-screenY
-                if(movementDifference>0 && movementDifference<(height*(children.length-1)))
+                if(!changing && movementDifference>0 && movementDifference<(height*(children.length-1)))
                     pageViewElement.current.style.transform=`translateY(-${movementDifference}px)`;
         }
         const handleTouchEnd = ({changedTouches})=>{
@@ -76,16 +76,17 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
     }
   
     useEffect(() => {
-        
-        window.addEventListener('resize',handleResize)
+        if(typeof window!=='undefined')
+            window.addEventListener('resize',handleResize)
         pageViewElement.current.addEventListener('wheel',handleScroll,{passive:true})
         const cleanupTouchEvents = handleTouchEvents()
         return () => {
-            window.removeEventListener('resize',handleResize);
+            if(typeof window!=='undefined')
+                window.removeEventListener('resize',handleResize);
             pageViewElement.current.removeEventListener('wheel',handleScroll)
             cleanupTouchEvents();
         }
-    }, [currentPage,changing,pageViewElement])
+    }, [currentPage,changing])
     return (
         <div 
         ref = {pageViewElement}
