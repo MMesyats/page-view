@@ -43,10 +43,10 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     const handleTouchEnd = ({ changedTouches }) => {
       const { screenY } = changedTouches[0]
       const delta = startY - screenY
-      pageViewElement.current.style.transition = `ease-out transform ${TRANSITION}ms`
       if (!changing) {
         setChanging(true)
-        if (delta > 40 && height * (currentPage + 1) <= pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
+        pageViewElement.current.style.transition = `ease-out transform ${TRANSITION}ms`
+        if (delta > 40 && height * (currentPage + 1) < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
         else if (delta < -40 && currentPage > 0) setCurrentPage(currentPage - 1)
         else {
           pageViewElement.current.style.transform = `translateY(-${height * currentPage}px)`
