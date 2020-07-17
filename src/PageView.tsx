@@ -37,7 +37,8 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
         const handleTouchStart = ({touches}:any) => {
             const {screenY,pageY} = touches[0]
             startY = screenY;
-            pageViewElement.current.style.transition=`none`;
+            if(!changing)
+                pageViewElement.current.style.transition=`none`;
         }
         const handleTouch = ({touches}:any) => 
         {
