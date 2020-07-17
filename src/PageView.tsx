@@ -12,7 +12,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
   const handleScroll: React.EventHandler<any> = ({ deltaY }) => {
     if (!changing) {
       setChanging(true)
-      if (deltaY > 40 && height * currentPage + 1 < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
+      if (deltaY > 40 && height * currentPage + 2 < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
       else if (deltaY < -40 && currentPage > 0) setCurrentPage(currentPage - 1)
       setTimeout(() => {
         setChanging(false)
@@ -43,7 +43,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       pageViewElement.current.style.transition = `ease-out transform ${TRANSITION}ms`
       if (!changing) {
         setChanging(true)
-        if (delta > 40 && currentPage <= pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
+        if (delta > 40 && height * currentPage + 2 <= pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
         else if (delta < -40 && currentPage > 0) setCurrentPage(currentPage - 1)
         else {
           pageViewElement.current.style.transform = `translateY(-${height * currentPage}px)`
