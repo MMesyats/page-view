@@ -28,20 +28,21 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     let startY = 0
     const handleTouchStart = ({ touches }: any) => {
       const { screenY, pageY } = touches[0]
-      startY = screenY
-      if (!changing) pageViewElement.current.style.transition = `none`
+      if (!changing) startY = screenY
+      pageViewElement.current.style.transition = `none`
     }
     const handleTouch = (e: any) => {
-      e.preventDefault()
       const { screenY } = e.touches[0]
-      const movementDifference = height * currentPage + startY - screenY
-      if (!changing && movementDifference > 0 && movementDifference < pageViewElement.current.scrollHeight)
-        pageViewElement.current.style.transform = `translateY(-${movementDifference}px)`
+      if (!changing) {
+        const movementDifference = height * currentPage + startY - screenY
+        if (movementDifference > 0 && movementDifference < pageViewElement.current.scrollHeight)
+          pageViewElement.current.style.transform = `translateY(-${movementDifference}px)`
+      }
     }
     const handleTouchEnd = ({ changedTouches }) => {
       const { screenY } = changedTouches[0]
-      const delta = startY - screenY
       if (!changing) {
+        const delta = startY - screenY
         setChanging(true)
         pageViewElement.current.style.transition = `ease-out transform ${TRANSITION}ms`
         if (delta > 40 && height * (currentPage + 1) < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
@@ -56,7 +57,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     }
     if (typeof window !== 'undefined') {
       window.addEventListener('touchstart', handleTouchStart, { passive: true })
-      window.addEventListener('touchmove', handleTouch)
+      window.addEventListener('touchmove', handleTouch, { passive: true })
       window.addEventListener('touchend', handleTouchEnd, { passive: true })
     }
     return () => {
