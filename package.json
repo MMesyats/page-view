@@ -1,54 +1,37 @@
 {
-  "name": "@webrains/page-view",
-  "version": "0.1.0",
-  "private": true,
-  "author": "Maxim Mesyats",
-  "types": "./src/index.d.ts",
-  "maintainers": [
-    "Maxim Mesyats <mmesyatz@gmail.com>"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.50",
-    "@types/react": "^16.9.43",
-    "@types/react-dom": "^16.9.8",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "typescript": "^3.7.5"
-  },
-  "scripts": {},
-  "eslintConfig": {},
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "description": "Fullpage js implementation",
-  "main": "index.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/MMesyats/page-view.git"
-  },
-  "keywords": [
-    "page-view",
-    "fullpage",
-    "react",
-    "typescript"
-  ],
-  "bugs": {
-    "url": "https://github.com/MMesyats/page-view/issues"
-  },
-  "homepage": "https://github.com/MMesyats/page-view#readme"
+	"name": "@mmesyats/page-view",
+	"version": "0.1.0",
+	"author": "Maxim Mesyats",
+	"types": "./src/index.d.ts",
+	"maintainers": [ "Maxim Mesyats <mmesyatz@gmail.com>" ],
+	"license": "MIT",
+	"dependencies": {
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.5.0",
+		"@testing-library/user-event": "^7.2.1",
+		"@types/jest": "^24.9.1",
+		"@types/node": "^12.12.50",
+		"@types/react": "^16.9.43",
+		"@types/react-dom": "^16.9.8",
+		"react": "^16.13.1",
+		"typescript": "^3.7.5"
+	},
+	"scripts": {},
+	"eslintConfig": {},
+	"browserslist": {
+		"production": [ ">0.2%", "not dead", "not op_mini all" ],
+		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+	},
+	"description": "Fullpage js implementation",
+	"main": "index.js",
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/MMesyats/page-view.git"
+	},
+	"keywords": [ "page-view", "fullpage", "react", "typescript" ],
+	"bugs": {
+		"url": "https://github.com/MMesyats/page-view/issues"
+	},
+	"homepage": "https://github.com/MMesyats/page-view#readme"
 }
