@@ -93,8 +93,8 @@ const PageView:React.FC<IPageView> = ({propPage,changePropPage,children=[]}):JSX
     }, [currentPage,changing,children])
     useEffect(()=>
     {
-        setCurrentPage(currentPage)
-        pageViewElement.current.style.transfrom= `translateY(-${height*currentPage}px)`
+        setCurrentPage(propPage)
+        pageViewElement.current.style.transfrom= `translateY(-${height*propPage}px)`
     },[propPage])
     useEffect(()=>
     {
