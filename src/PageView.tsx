@@ -60,7 +60,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
           setChanging(false)
         }, TRANSITION)
       } else {
-        stopPropagation
+        stopPropagation()
       }
     }
     pageViewElement.current.addEventListener('touchstart', handleTouchStart, false)
