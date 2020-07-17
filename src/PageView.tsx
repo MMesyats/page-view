@@ -26,7 +26,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
 
   const handleTouchEvents: () => VoidFunction = () => {
     let startY = 0
-    const handleTouchStart = ({ touches, stopPropagation }: any) => {
+    const handleTouchStart = ({ touches }: any) => {
       const { screenY, pageY } = touches[0]
       if (!changing) {
         startY = screenY
