@@ -42,8 +42,9 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
         const handleTouch = ({touches}:any) => 
         {
                 const {screenY} = touches[0];
-                if(height*currentPage+startY-screenY>0 && height*currentPage+startY-screenY<(height*children.length-1))
-                    pageViewElement.current.style.transform=`translateY(-${height*currentPage+startY-screenY}px)`;
+                const movementDifference =  height*currentPage+startY-screenY
+                if(movementDifference>0 && movementDifference<(height*children.length-2))
+                    pageViewElement.current.style.transform=`translateY(-${movementDifference}px)`;
         }
         const handleTouchEnd = ({changedTouches})=>{
             const {screenY} = changedTouches[0]
