@@ -27,6 +27,7 @@ const PageView:React.FC<IPageView> = ({propPage,changePropPage,children=[]}):JSX
         }
     }
     const handleResize = () => {
+        pageViewElement.current.style.height= `${height}px`
         setHeight(window.innerHeight);
     }
 
@@ -93,6 +94,7 @@ const PageView:React.FC<IPageView> = ({propPage,changePropPage,children=[]}):JSX
     useEffect(()=>
     {
         setCurrentPage(currentPage)
+        pageViewElement.current.style.transfrom= `translateY(-${height*currentPage}px)`
     },[propPage])
     useEffect(()=>
     {
