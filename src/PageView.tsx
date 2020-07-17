@@ -56,9 +56,9 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       }
     }
     if (typeof window !== 'undefined') {
-      pageViewElement.current.addEventListener('touchstart', handleTouchStart, { passive: true })
-      pageViewElement.current.addEventListener('touchmove', handleTouch, { passive: true })
-      pageViewElement.current.addEventListener('touchend', handleTouchEnd, { passive: true })
+      pageViewElement.current.addEventListener('touchstart', handleTouchStart, { passive: true, capture: false })
+      pageViewElement.current.addEventListener('touchmove', handleTouch, { passive: true, capture: false })
+      pageViewElement.current.addEventListener('touchend', handleTouchEnd, { passive: true, capture: false })
     }
     return () => {
       pageViewElement.current.removeEventListener('touchstart', handleTouchStart)
@@ -71,7 +71,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     if (typeof window !== 'undefined') {
       handleResize()
       window.addEventListener('resize', handleResize)
-      window.addEventListener('mousewheel', handleScroll, { passive: true })
+      window.addEventListener('mousewheel', handleScroll, { passive: true, capture: false })
     }
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
