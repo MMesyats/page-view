@@ -1,9 +1,9 @@
 export interface IPageView {
     propPage?: number
     changePropPage?: (arg0:number)=>void
-    children: JSX.Element[]
+    children: Element[]
 }
 export interface IPage {
     className?: string
-    children: JSX.Element[]
+    children: Element[] | Element
 }
