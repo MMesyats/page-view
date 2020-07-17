@@ -3,7 +3,7 @@ import { IPageView } from '..';
 
 const TRANSITION = 600;
 
-const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
+const PageView:React.FC<IPageView> = ({propPage,changePropPage,children=[]}):JSX.Element => {
     const pageViewElement = useRef<any>();
     const [currentPage,setCurrentPage] = useState<number>(0);
     const [height, setHeight] = useState<number>();
@@ -90,6 +90,14 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
             cleanupTouchEvents();
         }
     }, [currentPage,changing])
+    useEffect(()=>
+    {
+        setCurrentPage(currentPage)
+    },[propPage])
+    useEffect(()=>
+    {
+        changePropPage(currentPage)
+    },[currentPage])
     return (
         <div 
         ref = {pageViewElement}
