@@ -56,6 +56,10 @@ const PageView:React.FC<IPageView> = ({propPage,children=[]}):JSX.Element => {
                   changePage(currentPage+1)
                 else if(delta < -40 && currentPage > 0)
                   changePage(currentPage-1)
+                else 
+                {
+                  pageViewElement.current.style.transform=`translateY(-${height*currentPage}px)`;
+                }
                 setTimeout(()=>{setChanging(false)},TRANSITION)
             }
         }
