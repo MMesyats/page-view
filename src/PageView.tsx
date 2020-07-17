@@ -34,6 +34,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       }
     }
     const handleTouch = (e: any) => {
+      e.preventDefault()
       const { screenY } = e.touches[0]
       if (!changing) {
         const movementDifference = height * currentPage + startY - screenY
@@ -71,7 +72,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     if (typeof window !== 'undefined') {
       handleResize()
       window.addEventListener('resize', handleResize)
-      window.addEventListener('mousewheel', handleScroll, { passive: true, capture: false })
+      window.addEventListener('mousewheel', handleScroll, { passive: false, capture: false })
     }
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
