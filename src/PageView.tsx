@@ -33,8 +33,9 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       startY = screenY
       if (!changing) pageViewElement.current.style.transition = `none`
     }
-    const handleTouch = ({ touches }: any) => {
-      const { screenY } = touches[0]
+    const handleTouch = (e: any) => {
+      e.preventDefault()
+      const { screenY } = e.touches[0]
       const movementDifference = height * currentPage + startY - screenY
       if (!changing && movementDifference > 0 && movementDifference < pageViewElement.current.scrollHeight)
         pageViewElement.current.style.transform = `translateY(-${movementDifference}px)`
@@ -57,7 +58,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     }
     if (typeof window !== 'undefined') {
       window.addEventListener('touchstart', handleTouchStart, { passive: true })
-      window.addEventListener('touchmove', handleTouch, { passive: true })
+      window.addEventListener('touchmove', handleTouch)
       window.addEventListener('touchend', handleTouchEnd, { passive: true })
     }
     return () => {
@@ -93,8 +94,9 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     <div
       ref={pageViewElement}
       style={{
-        width: '100vw',
-        height: `${height}px`,
+        width: '100%',
+        height: '100%',
+        position: 'relative',
         transform: `translateY(-${height * currentPage}px)`,
         transition: `ease-out transform ${TRANSITION}ms`,
         userSelect: 'all'
