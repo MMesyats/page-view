@@ -1,5 +1,4 @@
 export interface IPageView {
-    props: any[]
     propPage?: number
     children: JSX.Element[]
 }
