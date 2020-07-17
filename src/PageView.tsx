@@ -89,7 +89,7 @@ const PageView:React.FC<IPageView> = ({propPage,changePropPage,children=[]}):JSX
             pageViewElement.current.removeEventListener('wheel',handleScroll)
             cleanupTouchEvents();
         }
-    }, [currentPage,changing])
+    }, [currentPage,changing,children])
     useEffect(()=>
     {
         setCurrentPage(currentPage)
