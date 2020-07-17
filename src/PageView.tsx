@@ -31,21 +31,17 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       if (!changing) {
         startY = screenY
         pageViewElement.current.style.transition = `none`
-      } else {
-        stopPropagation()
       }
     }
-    const handleTouch = ({ touches, stopPropagation }: any) => {
+    const handleTouch = ({ touches }: any) => {
       const { screenY } = touches[0]
       if (!changing) {
         const movementDifference = height * currentPage + startY - screenY
         if (movementDifference > 0 && movementDifference < pageViewElement.current.scrollHeight)
           pageViewElement.current.style.transform = `translateY(-${movementDifference}px)`
-      } else {
-        stopPropagation()
       }
     }
-    const handleTouchEnd = ({ changedTouches, stopPropagation }) => {
+    const handleTouchEnd = ({ changedTouches }) => {
       const { screenY } = changedTouches[0]
       if (!changing) {
         const delta = startY - screenY
@@ -59,13 +55,11 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
         setTimeout(() => {
           setChanging(false)
         }, TRANSITION)
-      } else {
-        stopPropagation()
       }
     }
-    pageViewElement.current.addEventListener('touchstart', handleTouchStart, false)
-    pageViewElement.current.addEventListener('touchmove', handleTouch, false)
-    pageViewElement.current.addEventListener('touchend', handleTouchEnd, false)
+    pageViewElement.current.addEventListener('touchstart', handleTouchStart, { passive: true, capture: false })
+    pageViewElement.current.addEventListener('touchmove', handleTouch, { passive: true, capture: false })
+    pageViewElement.current.addEventListener('touchend', handleTouchEnd, { passive: true, capture: false })
     return () => {
       pageViewElement.current.removeEventListener('touchstart', handleTouchStart)
       pageViewElement.current.removeEventListener('touchmove', handleTouch)
@@ -77,7 +71,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     if (typeof window !== 'undefined') {
       handleResize()
       window.addEventListener('resize', handleResize)
-      window.addEventListener('mousewheel', handleScroll, { passive: false, capture: false })
+      window.addEventListener('mousewheel', handleScroll, { passive: true, capture: false })
     }
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
