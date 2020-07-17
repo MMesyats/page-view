@@ -3,7 +3,9 @@
 	"version": "0.1.1",
 	"author": "Maxim Mesyats",
 	"types": "./src/index.d.ts",
-	"maintainers": [ "Maxim Mesyats <mmesyatz@gmail.com>" ],
+	"maintainers": [
+		"Maxim Mesyats <mmesyatz@gmail.com>"
+	],
 	"license": "MIT",
 	"dependencies": {
 		"@testing-library/jest-dom": "^4.2.4",
@@ -19,17 +21,37 @@
 	"scripts": {},
 	"eslintConfig": {},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"description": "Fullpage js implementation",
 	"main": "index.js",
-	"devDependencies": {},
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"eslint-config-blvd": "^0.1.1",
+		"eslint-config-prettier": "^5.0.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"gatsby-plugin-eslint": "^2.0.8",
+		"prettier": "^1.19.1"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/MMesyats/page-view.git"
 	},
-	"keywords": [ "page-view", "fullpage", "react", "typescript" ],
+	"keywords": [
+		"page-view",
+		"fullpage",
+		"react",
+		"typescript"
+	],
 	"bugs": {
 		"url": "https://github.com/MMesyats/page-view/issues"
 	},
