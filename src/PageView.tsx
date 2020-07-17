@@ -56,14 +56,14 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       }
     }
     if (typeof window !== 'undefined') {
-      window.addEventListener('touchstart', handleTouchStart, { passive: true })
-      window.addEventListener('touchmove', handleTouch, { passive: true })
-      window.addEventListener('touchend', handleTouchEnd, { passive: true })
+      pageViewElement.current.addEventListener('touchstart', handleTouchStart, { passive: true })
+      pageViewElement.current.addEventListener('touchmove', handleTouch, { passive: true })
+      pageViewElement.current.addEventListener('touchend', handleTouchEnd, { passive: true })
     }
     return () => {
-      window.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('touchmove', handleTouch)
-      window.removeEventListener('touchend', handleTouchEnd)
+      pageViewElement.current.removeEventListener('touchstart', handleTouchStart)
+      pageViewElement.current.removeEventListener('touchmove', handleTouch)
+      pageViewElement.current.removeEventListener('touchend', handleTouchEnd)
     }
   }
 
@@ -71,13 +71,13 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     if (typeof window !== 'undefined') {
       handleResize()
       window.addEventListener('resize', handleResize)
-      window.addEventListener('wheel', handleScroll, { passive: true })
+      window.addEventListener('mousewheel', handleScroll, { passive: true })
     }
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
       if (typeof window !== 'undefined') {
         window.removeEventListener('resize', handleResize)
-        window.removeEventListener('wheel', handleScroll)
+        window.removeEventListener('mousewheel', handleScroll)
         cleanupTouchEvents()
       }
     }
