@@ -105,7 +105,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       ref={pageViewElement}
       style={{
         width: '100%',
-        height: `${height}px`,
+        height: '100%',
         maxHeight: '100%',
         position: 'absolute',
         overflow: 'visible',
