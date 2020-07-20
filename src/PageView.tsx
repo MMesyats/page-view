@@ -20,8 +20,8 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       }, TRANSITION)
     }
   }
+
   const handleResize = () => {
-    pageViewElement.current.style.height = `${height}px`
     setHeight(window.innerHeight)
   }
 
