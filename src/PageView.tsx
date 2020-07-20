@@ -1,5 +1,5 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
-import { IPageView } from '../index.d.ts'
+import { IPageView } from '../index'
 
 const TRANSITION = 600
 
@@ -87,7 +87,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       }
       cleanupTouchEvents()
     }
-  }, [currentPage, changing, children])
+  }, [currentPage, changing])
   useLayoutEffect(() => {
     setCurrentPage(propPage)
     pageViewElement.current.style.transfrom = `translateY(-${height * propPage}px)`
