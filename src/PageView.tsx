@@ -77,14 +77,19 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     if (typeof window !== 'undefined') {
       handleResize()
       window.addEventListener('resize', handleResize)
-      window.addEventListener('mousewheel', handleScroll, { passive: true })
     }
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useLayoutEffect(() => {
+    pageViewElement.current.addEventListener('mousewheel', handleScroll, { passive: true })
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
       if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', handleResize)
-        window.removeEventListener('mousewheel', handleScroll)
       }
+      pageViewElement.current.removeEventListener('mousewheel', handleScroll)
       cleanupTouchEvents()
     }
   }, [currentPage, changing])
