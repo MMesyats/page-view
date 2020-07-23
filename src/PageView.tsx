@@ -11,7 +11,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
 
   const handleScroll: WheelEventHandler = e => {
     const { deltaY } = e
-    if (!changing && height * currentPage == pageViewElement.current.scrollHeight) {
+    if (!changing) {
       setChanging(true)
       console.log(deltaY, changing, currentPage)
       if (deltaY > 1 && height * (currentPage + 1) < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
