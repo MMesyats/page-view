@@ -10,7 +10,6 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
   const [changing, setChanging] = useState<boolean>(false)
 
   const handleScroll: WheelEventHandler = e => {
-    e.preventDefault()
     const { deltaY } = e
     if (!changing) {
       setChanging(true)
@@ -94,7 +93,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
   }, [])
 
   useLayoutEffect(() => {
-    pageViewElement.current.addEventListener('wheel', handleScroll, { passive: false, capture: false })
+    pageViewElement.current.addEventListener('wheel', handleScroll, { passive: true, capture: false })
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
       pageViewElement.current.removeEventListener('wheel', handleScroll)
