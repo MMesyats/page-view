@@ -9,7 +9,9 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
   const [height, setHeight] = useState<number>(Infinity)
   const [changing, setChanging] = useState<boolean>(false)
 
-  const handleScroll: WheelEventHandler = ({ deltaY }) => {
+  const handleScroll: WheelEventHandler = e => {
+    e.preventDefault()
+    const { deltaY } = e
     if (!changing) {
       setChanging(true)
       if (deltaY > 1 && height * (currentPage + 1) < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
@@ -18,6 +20,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
         setChanging(false)
       }, TRANSITION)
     }
+    e.stopPropagation()
   }
 
   const handleResize = () => {
@@ -90,7 +93,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
   }, [])
 
   useLayoutEffect(() => {
-    pageViewElement.current.addEventListener('wheel', handleScroll, { passive: true })
+    pageViewElement.current.addEventListener('wheel', handleScroll, { passive: false, capture: false })
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
       pageViewElement.current.removeEventListener('wheel', handleScroll)
