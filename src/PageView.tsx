@@ -13,6 +13,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     const { deltaY } = e
     if (!changing) {
       setChanging(true)
+      console.log(deltaY, changing, currentPage)
       if (deltaY > 1 && height * (currentPage + 1) < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
       else if (deltaY < -1 && currentPage > 0) setCurrentPage(currentPage - 1)
       setTimeout(() => {
