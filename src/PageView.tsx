@@ -14,11 +14,14 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     if (!changing) {
       setChanging(true)
       console.log(deltaY, changing, currentPage)
-      if (deltaY > 1 && height * (currentPage + 1) < pageViewElement.current.scrollHeight) setCurrentPage(currentPage + 1)
-      else if (deltaY < -1 && currentPage > 0) setCurrentPage(currentPage - 1)
+      if (deltaY > 1 && height * (currentPage + 1) < pageViewElement.current.scrollHeight)
+        pageViewElement.current.style.transform = `translateY(-${height * (currentPage + 1)}px)`
+      else if (deltaY < -1 && currentPage > 0) pageViewElement.current.style.transform = `translateY(-${height * (currentPage - 1)}px)`
+
       setTimeout(() => {
         setChanging(false)
-      }, TRANSITION + 300)
+        setCurrentPage(deltaY > 1 ? currentPage + 1 : currentPage - 1)
+      }, TRANSITION)
     } else {
       e.stopPropagation()
     }
@@ -94,7 +97,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
   }, [])
 
   useEffect(() => {
-    pageViewElement.current.addEventListener('wheel', handleScroll, { passive: true, capture: false })
+    pageViewElement.current.addEventListener('wheel', handleScroll, { passive: true, capture: false, once: true })
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
       pageViewElement.current.removeEventListener('wheel', handleScroll)
