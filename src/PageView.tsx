@@ -92,7 +92,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
     }
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     pageViewElement.current.addEventListener('wheel', handleScroll, { passive: true, capture: false })
     const cleanupTouchEvents = handleTouchEvents()
     return () => {
@@ -100,6 +100,7 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       cleanupTouchEvents()
     }
   }, [currentPage, changing, pageViewElement.current])
+
   useLayoutEffect(() => {
     setCurrentPage(propPage)
     pageViewElement.current.style.transfrom = `translateY(-${height * propPage}px)`
