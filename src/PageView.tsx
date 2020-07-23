@@ -19,8 +19,9 @@ const PageView: React.FC<IPageView> = ({ propPage, changePropPage, children = []
       setTimeout(() => {
         setChanging(false)
       }, TRANSITION)
+    } else {
+      e.stopPropagation()
     }
-    e.stopPropagation()
   }
 
   const handleResize = () => {
